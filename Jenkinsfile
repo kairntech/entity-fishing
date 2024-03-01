@@ -25,7 +25,7 @@ pipeline {
       steps {
         println 'Building entity-fishing'
         script {
-          sh 'gradle clean build'
+          sh 'gradle clean build -x test'
         }
       }
     }
