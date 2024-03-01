@@ -21,18 +21,11 @@ pipeline {
         }
       }
     }
-    stage('Generate new version') {
-      when {
-        environment name: 'SKIP_JOB', value: '0'
-      }
-      stages {
-        stage('Build entity-fishing') {
-          steps {
-            println 'Building entity-fishing'
-            script {
-              sh './gradlew clean build'
-            }
-          }
+    stage('Build entity-fishing') {
+      steps {
+        println 'Building entity-fishing'
+        script {
+          sh 'gradle clean build'
         }
       }
     }
@@ -165,4 +158,8 @@ def analyseBuildCause() {
     switchEmailNotif(true, BUILD_NUMBER)
     println 'Job started by Branch Discovery, proceeding'
   }
+  // if you want to stop the build without relying on when conditions based on env.SKIP_JOB 
+  // currentBuild.result = 'NOT_BUILT'
+  // currentBuild.getRawBuild().getExecutor().interrupt(Result.NOT_BUILT)
+  // sleep(2)
 }
