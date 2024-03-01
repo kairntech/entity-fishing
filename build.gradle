@@ -20,6 +20,11 @@ apply plugin: 'maven-publish'
 group = "com.scienceminer.nerd"
 version = '0.0.6'
 
+ext {
+    grobidVersion = "0.8.1-SNAPSHOT"
+    grobidNerVersion = grobidVersion
+}
+
 description = """entity recognition and disambiguation against Wikidata and Wikipedia in a raw text, partially-annotated text segment, PDF or weighted term vector"""
 
 sourceCompatibility = 1.8
@@ -51,9 +56,9 @@ dependencies {
     testImplementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
 
     // GROBID
-    implementation group: 'org.grobid', name: 'grobid-core', version: '0.7.3'
-    implementation group: 'org.grobid', name: 'grobid-trainer', version: '0.7.3'
-    implementation group: 'org.grobid', name: 'grobid-ner', version: '0.7.3'
+    implementation group: 'org.grobid', name: 'grobid-core', version: grobidVersion
+    implementation group: 'org.grobid', name: 'grobid-trainer', version: grobidVersion
+    implementation group: 'org.grobid', name: 'grobid-ner', version: grobidNerVersion
 
     implementation 'black.ninia:jep:4.0.2'
     implementation 'org.apache.opennlp:opennlp-tools:1.9.1'
